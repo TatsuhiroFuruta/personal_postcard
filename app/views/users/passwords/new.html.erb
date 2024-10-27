@@ -1,0 +1,16 @@
+<%= render "users/shared/logo" %>
+<h2 class="mb-4 text-center text-2xl font-bold text-gray-800 md:mb-8">パスワード再発行</h2>
+<div class="sm:text-center">パスワードを再発行致しますので、ご登録いただいたメールアドレスをご入力してください。</div>
+
+<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: {class: "mt-8 mx-auto max-w-sm", method: :post }) do |f| %>
+  <%= render "users/shared/error_messages", resource: resource %>
+
+  <div class="field">
+    <%= f.label :email, class: "mb-2 inline-block text-sm text-gray-800 sm:text-base" %><br />
+    <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "w-full rounded border bg-gray-50 px-3 py-2 text-gray-800 outline-none ring-indigo-300 transition duration-100 focus:ring" %>
+  </div>
+
+  <div class="">
+    <%= f.submit "送信する", class: "mt-6 inline-block rounded-lg bg-red-500 px-8 py-3 text-center text-sm font-semibold text-white duration-100 hover:bg-red-600 md:text-base" %>
+  </div>
+<% end %>

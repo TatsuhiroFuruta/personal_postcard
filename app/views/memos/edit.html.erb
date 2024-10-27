@@ -1,0 +1,31 @@
+<%= render "memos/shared/logo" %>
+<div class="bg-white flex flex-col w-full mx-auto my-10 shadow-lg shadow-gray-500 rounded-md containder">
+  <div class="mb-4 text-center text-2xl font-bold text-gray-800 md:mb-8 lg:text-3xl mt-10">投稿編集</div>
+
+  <%= form_with model: @memo do |form| %>
+  <div class="flex flex-col">
+      <%= render "memos/shared/error_messages", model: @memo %>
+      <div class="flex flex-col py-8">
+        <div class="w-4/5 mx-auto">
+        <%= form.label :title %><span class="text-red-500">（必須）</span>
+        </div>
+        <%= form.text_field :title, class: "w-4/5 mx-auto block rounded border ring-indigo-300 transition duration-100 focus:ring", placeholder: "１文字以上入力してください。" %>  
+      </div>
+      <div class="flex flex-col pb-8">
+        <%= form.label :body, class: " w-4/5 mx-auto block" %>
+        <%= form.text_area :body, class: " w-4/5 mx-auto block rounded border ring-indigo-300 transition duration-100 focus:ring" %>
+      </div>
+    <div>
+      <%= image_tag @memo.content_image.url, class:"w-4/5 mx-auto"%>
+    </div>
+    <div class="flex justify-center my-10">
+      <div class="mr-3 bg-blue-500 hover:bg-blue-600 duration-100 m-3 px-6 py-3 rounded-lg text-center">
+        <%= form.submit "更新" , class: "" %>
+      </div>
+      <% end %>
+      <div class="mr-3 bg-sky-300 hover:bg-sky-400 duration-100 m-3 px-6 py-3 rounded-lg text-center">
+          <%= link_to "戻る", memos_path %>
+      </div>
+    </div>
+  </div>
+</div>

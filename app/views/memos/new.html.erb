@@ -1,0 +1,52 @@
+<%= render "memos/shared/logo" %>
+<div data-controller="upload-image" class="bg-white flex flex-col w-full mx-auto my-10 shadow-lg shadow-gray-500 rounded-md containder max-w-screen-md">
+  <div class="mb-4 text-center text-2xl font-bold text-gray-800 md:mb-8 lg:text-3xl mt-10">新しい投稿</div>
+  <%= form_with model: @memo, local: true do |form| %>  
+  <div class="flex flex-col">
+    <%= render "memos/shared/error_messages", model: @memo %>
+    <div class="flex flex-col pb-8">
+      <div class="w-4/5 mx-auto">
+        <%= form.label :title %><span class="text-red-500">（必須）</span>
+      </div>
+      <%= form.text_field :title, class: "w-4/5 mx-auto block rounded border ring-indigo-300 transition duration-100 focus:ring", placeholder: "１文字以上入力してください。" %>
+    </div>
+    <div class="flex flex-col pb-8">
+        <%= form.label :body, class: "w-4/5 mx-auto" %> 
+        <%= form.text_area :body, class: " w-4/5 mx-auto block rounded border ring-indigo-300 transition duration-100 focus:ring" %>
+      </div>
+    </div>
+      <div class="flex flex-col items-center gap-8">
+        <div>
+          <%= form.label :content_image, "投稿画像（１枚のみ）", class: "font-medium" %><span class="text-red-500">（必須）</span>
+        </div>
+        <div class="w-4/5 text-sm md:text-base">
+          <ul>
+            <li class="mb-2">
+              投稿可能な画像の拡張子: jpg, jpeg, gif, png 
+            </li>
+            <li data-upload-image-target="image_change_explanation" class="mb-2">
+              「画像を投稿する」ボタンを押すと、画像ファイルをアップロードでき、ファイル名と投稿する画像を確認できます。
+            </li>
+            <li class="text-red-500">
+              投稿画像は「投稿する」ボタンを押すと変更できないため、注意してください。（タイトルとメモ内容は、投稿後に編集することができます。）
+            </li>
+          </ul>
+
+        </div>
+        <label class="">
+          <div data-upload-image-target="image_upload_button" class="p-5 bg-green-400 hover:bg-green-500 rounded-md block text-center mb-4">画像を投稿する</div>
+            <%= form.file_field :content_image, class: "hidden px-8 py-12 border-2 border-dashed rounded-md dark:border-gray-300 dark:text-gray-600 dark:bg-gray-100", data: {"upload-image-target": "input", "action": "change->upload-image#previewImage" } %>
+        </label>
+      </div>
+      <div data-upload-image-target="preview" class="flex flex-col mb-4 mx-auto md:mb-6 w-4/5"></div>
+    <div class="flex justify-center my-10">
+      <div class="mr-3 bg-blue-500 hover:bg-blue-600 m-3 px-6 py-3 rounded-lg text-center duration-100">
+        <%= form.submit "投稿する"  %>
+      </div>
+      <div class="mr-3 bg-sky-300 hover:bg-sky-400 m-3 px-6 py-3 rounded-lg text-center duration-100">
+        <%= link_to "戻る", memos_path %>
+      </div>
+    </div>
+  </div>
+  <% end %>
+</div>

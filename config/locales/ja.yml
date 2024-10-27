@@ -1,0 +1,19 @@
+ja:
+  time:
+    formats:
+      default: "%Y/%m/%d %H:%M:%S"
+  activerecord:
+    attributes:
+      memo:
+        title: "タイトル"
+        body: "メモ内容"
+        content_image: "投稿画像"
+    errors:
+      models:
+        memo:
+          attributes:
+            title:
+              # blank: を記入していません。
+              too_short: "を記入していません。"
+            content_image:
+              blank: "をアップロードしていません。"

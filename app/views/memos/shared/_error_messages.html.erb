@@ -1,0 +1,10 @@
+<% if @memo.errors.any? %>
+    <div class="bg-pink-300 w-4/5 mx-auto p-10 rounded-lg my-10">
+        <ul>
+        <% @memo.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+            <%#= message %>
+        <% end %>
+        </ul>
+    </div>
+<% end %>

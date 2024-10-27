@@ -1,0 +1,57 @@
+<div class="mt-6 flex flex-col w-full mx-auto container">
+  <div class="flex justify-end mb-10">
+      <%= link_to "新しい投稿", new_memo_path, class: "text-xs bg-blue-500 duration-100 hover:bg-blue-600 mr-2 my-2 sm:mr-4 sm:my-4 px-4 py-2 sm:px-6 sm:py-3 rounded-lg md:text-base" %>
+    <% if user_signed_in? %>
+      <%= link_to "アカウント情報", edit_user_registration_path, class: "text-xs mr-2 my-2 sm:mr-4 sm:my-4 inline-block rounded-lg bg-green-500 px-4 py-2 sm:px-6 sm:py-3 text-center font-semibold text-white duration-100 hover:bg-green-600 md:text-base" %>
+      <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "text-xs mr-2 my-2 sm:mr-4 sm:my-4 inline-block rounded-lg bg-red-500 px-4 py-2 sm:px-6 sm:py-3 text-center font-semibold text-white duration-100 hover:bg-red-600 md:text-base" %>
+    <% else %>
+      <%= link_to "Log in", new_user_session_path %>
+      <%= link_to "Register", new_user_registration_path %>
+    <% end %>
+  </div>
+  <h1 class="text-3xl text-center font-bold text-gray-800 my-10">パーソナルポストカード</h1>
+  <% if !current_user.memos.all.blank? %>
+    <div class="mx-auto">
+      <%= search_form_for @search, url:memos_path do |f| %>
+      <div class="flex flex-row m-3">
+        <%= f.search_field :title_or_body_cont, class:"w-full rounded-lg", size:"60", placeholder:"タイトルまたは内容"%>
+        <div class="bg-blue-500 duration-100 hover:bg-blue-600 px-6 py-3 text-center rounded-lg"><%= f.submit "検索" %></div>
+      </div>
+      <% end %>
+    </div>
+    <div class="mb-10 md:mb-10 text-center">リセット方法：空欄にして「検索」ボタンを押すと元に戻ります。</div>
+    <% if !@memos.blank? %>
+      <div data-controller="index" data-index-target="memos" data-index-sizememos-value="<%= @memos.size %>">
+          <% @memos.each do |memo| %>
+          <div class="bg-slate-200 border-solid border-y-2 border-black">
+            <%= image_tag memo.content_image.url, class:"object-cover aspect-video w-full"  %>
+              <% if memo.title.length <= 8 %>
+                <h2 class="m-2 text-lg"><%= link_to "タイトル：#{memo.title}", memo_path(memo) %></h2>
+              <% else %>  
+                <h2 class="m-2 text-lg"><%= link_to "タイトル：#{memo.title[0..8]}...", memo_path(memo) %></h2>
+              <% end %>
+                <span>
+                  <small><%=l memo.created_at %></small>
+                </span>
+                <div class="flex justify-end mt-5">
+                  <%= link_to "内容", memo_path(memo), class: "bg-green-500 duration-100 hover:bg-green-600 m-2 md:m-3 px-6 py-3 rounded-lg text-center" %> 
+                  <%= link_to "編集", edit_memo_path(memo), class: "bg-blue-500 duration-100 hover:bg-blue-600 my-2 md:my-3 px-6 py-3 rounded-lg text-center"%>
+                  <%= link_to "削除", memo_path(memo), class: "bg-red-500 duration-100 hover:bg-red-600 m-2 md:m-3 px-6 py-3 rounded-lg text-center", data: { turbo_method: :delete, turbo_confirm: "一度削除すると元に戻せません。本当によろしいでしょうか？" } %>
+                </div>
+          </div>
+          <% end %> 
+      </div>
+    <% else %>
+      <div class="text-xl md:text-2xl text-gray-500 opacity-75 my-4 md:my-6 text-center">検索結果が見つかりませんでした。</div>
+    <% end %> 
+  <% else %>
+  <div class="flex flex-col align-center">
+    <div class="text-xl md:text-2xl text-gray-500 opacity-75 my-4 md:my-6 text-center">メモが投稿されていません。<br />新しい投稿をしてみよう！！</div>
+    <%= link_to "新しい投稿", new_memo_path, class: "text-center text-xs bg-blue-500 duration-100 hover:bg-blue-600 mx-auto px-4 py-2 sm:px-6 sm:py-3 rounded-lg md:text-base" %>
+  </div>
+  <% end %>
+
+  <div class="mx-auto">
+  <%= paginate @memos, window: 2 %>
+  </div>
+</div>

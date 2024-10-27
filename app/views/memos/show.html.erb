@@ -1,0 +1,15 @@
+<%= render "memos/shared/logo" %>
+<div class="bg-white py-2 sm:py-4 lg:py-6 mx-auto flex flex-col max-w-screen-lg">
+    <h1 class="mb-12 sm:mb-14 text-center text-2xl font-bold text-gray-800 lg:mb-16 lg:text-3xl">投稿内容</h1> 
+    <h2 class="text-xl text-center border border-solid border-white-100 w-full py-4 md:py-6">タイトル：<%= @memo.title %></h2>
+    <% if @memo.body.blank? %>
+        <div class=" text-gray-500 opacity-75 my-4 md:my-6">メモ内容の投稿なし。</div>
+    <% else %>
+        <div class="my-4 md:my-6"><%= @memo.body %></div>
+    <% end %>
+    <%= image_tag @memo.content_image.url, class: "mb-4 md:mb-6 w-full" %>
+    <div class="flex justify-center gap-4 md:gap-8">
+        <%= link_to "編集", edit_memo_path, class: "bg-blue-500 hover:bg-blue-600 duration-100 m-3 px-6 py-3 md:px-8 lg:py-4 rounded-lg text-center" %>
+        <%= link_to "戻る", memos_path, class: "bg-sky-300 hover:bg-sky-400 duration-100 m-3 px-6 py-3 md:px-8 lg:py-4 rounded-lg text-center" %>
+    </div>
+</div>

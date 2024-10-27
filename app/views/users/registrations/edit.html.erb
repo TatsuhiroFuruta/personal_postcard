@@ -1,0 +1,58 @@
+<div class="bg-white py-6 sm:py-8 lg:py-12 mx-auto flex">
+  <div class="mx-auto max-w-screen-2xl px-4 md:px-8">
+    <%= render "users/shared/logo" %>
+    <h2 class="mb-4 text-center text-2xl font-bold text-gray-800 md:mb-8">ユーザー情報</h2>
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: {class: "mx-auto max-w-sm", method: :put}) do |f| %>
+
+      <div class="flex flex-col gap-4 p-4 md:p-8" >
+        <%= render "users/shared/error_messages", resource: resource %>
+
+        <div class="field">
+          <%= f.label :email, class: "mb-2 inline-block text-sm text-gray-800 sm:text-base" %><br />
+          <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "w-full rounded border bg-gray-50 px-3 py-2 text-gray-800 outline-none ring-indigo-300 transition duration-100 focus:ring" %>
+        </div>
+
+        <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+          <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+        <% end %>
+
+        <div class="field">
+          <div>
+            <%= f.label :password, class: "mb-2 inline-block text-sm text-gray-800 sm:text-base" %><br /> <i>(新しく変更する場合は <%= @minimum_password_length %> 文字以上入力)</i>
+          </div>
+          <%= f.password_field :password, autocomplete: "new-password" , class: "w-full rounded border bg-gray-50 px-3 py-2 text-gray-800 outline-none ring-indigo-300 transition duration-100 focus:ring" %>
+          <% if @minimum_password_length %>
+            <br />
+          <% end %>
+        </div>
+
+        <div class="field">
+          <%= f.label :password_confirmation, class: "mb-2 inline-block text-sm text-gray-800 sm:text-base" %><br />
+          <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "w-full rounded border bg-gray-50 px-3 py-2 text-gray-800 outline-none ring-indigo-300 transition duration-100 focus:ring" %>
+        </div>
+
+        <div class="field">
+          <%= f.label :current_password, class: "mb-2 inline-block text-sm text-gray-800 sm:text-base" %><br /> <i>(アカウント情報を変更する場合は入力)</i>
+          <%= f.password_field :current_password, autocomplete: "current-password", class: "w-full rounded border bg-gray-50 px-3 py-2 text-gray-800 outline-none ring-indigo-300 transition duration-100 focus:ring" %>
+        </div>
+
+        <div class="mt-10">
+          <div class="font-bold text-lg mb-5">パスワード以外を変更する場合</div>
+          <div class="ml-4">変更内容を該当するテキストフォームに、現在登録しているパスワードを「現在のパスワード」に入力して「アカウント情報を変更」ボタンをクリック。</div>
+        </div>
+
+        <div class="mb-10">
+          <div class="font-bold text-lg mb-5">パスワードを変更する場合</div>
+          <div class="ml-4">新しく設定するパスワードを「パスワード」と「パスワード（確認用）」に、現在登録しているパスワードを「現在のパスワード」に入力して「アカウント情報を変更」ボタンをクリック。</div>
+        </div>
+        <%= f.submit "アカウント情報を変更", class: "mt-4 inline-block rounded-lg bg-blue-500 px-8 py-3 text-center text-sm font-semibold text-white duration-100 hover:bg-blue-600 md:text-base" %>
+        
+        <%= button_to "アカウントを削除", registration_path(resource_name), data: { confirm: "本当に削除してもよろしいでしょうか?", turbo_confirm: "本当に削除してもよろしいでしょうか?" }, method: :delete, class: "mt-4 inline-block rounded-lg bg-red-500 px-8 py-3 text-center text-sm font-semibold text-white duration-100 hover:bg-red-600 md:text-base" %>
+
+        <div>
+          <%= link_to "戻る", memos_path, class: "text-indigo-500 transition duration-100 hover:text-indigo-600 active:text-indigo-700"%>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
