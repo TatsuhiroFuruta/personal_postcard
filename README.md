@@ -6,7 +6,7 @@
 
 * Ruby on Rails 7.2.1
 
-## How to use
+## How to build
  ```
     $ git clone https://github.com/TatsuhiroFuruta/personal_postcard.git
     $ cd personal_postcard
