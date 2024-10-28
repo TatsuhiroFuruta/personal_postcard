@@ -10,10 +10,10 @@
  ```
     $ git clone https://github.com/TatsuhiroFuruta/personal_postcard.git
     $ cd personal_postcard
-    $ bin/dev
-    Click http://127.0.0.1:3000
+    $ bin/dev 
  ```
- 
+  Click http://127.0.0.1:3000
+
 <!-- * System dependencies 
   - bootsnap 
   - brakeman 
