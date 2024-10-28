@@ -1,14 +1,20 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
+## Requirement
 
 * Ruby version
   - 3.1.3
 
-* System dependencies 
+* Ruby on Rails version
+  - 7.2.1
+
+## How to use
+ ```
+    $ git clone https://github.com/TatsuhiroFuruta/personal_postcard.git
+    $ cd personal_postcard
+    $ bin/dev
+  ```
+<!-- * System dependencies 
   - bootsnap 
   - brakeman 
   - capybara 
@@ -47,4 +53,4 @@ Things you may want to cover:
 
 * Deployment instructions
 
-* ...
+* ... -->
