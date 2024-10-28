@@ -2,11 +2,9 @@
 
 ## Requirement
 
-* Ruby version
-  - 3.1.3
+* Ruby 3.1.3
 
-* Ruby on Rails version
-  - 7.2.1
+* Ruby on Rails 7.2.1
 
 ## How to use
  ```
