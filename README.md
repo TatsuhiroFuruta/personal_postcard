@@ -14,6 +14,7 @@
  ```
   Click http://127.0.0.1:3000
 
+![personal_postcard_login_display](https://github.com/user-attachments/assets/5543cb13-a44a-427d-b6bc-4ac30f0fed46)
 <!-- * System dependencies 
   - bootsnap 
   - brakeman 
